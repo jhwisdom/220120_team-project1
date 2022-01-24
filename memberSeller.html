@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>판매자 회원가입</title>
+</head>
+<body>
+    <form method="post">
+        이메일<input id="email" type="text" placeholder="이메일을 입력해주세요"/>
+        비밀번호<input id="pwd" type="text" placeholder="비밀번호를 입력해주세요"/>
+        비밀번호 확인<input id="pwd_check" type="text" placeholder="비밀번호를 다시 확인해주세요"/>
+        이름<input id="seller_name" type="text"/>
+        주소<input id="address_kakao" type="text" readonly/>
+        세부주소<input id="address_detail" type="text"/>
+        팩스<input id="fax_num"/>
+        가게 분류
+        가게명<input id="market_name"/>
+    </form> 
+</body>
+<script src="css.css"></script>
+<script src="memberSeller.js"></script>
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+   window.onload = function(){
+    document.getElementById("address_kakao").addEventListener("click", function(){ //주소입력칸을 클릭하면
+        //카카오 지도 발생
+        new daum.Postcode({
+            oncomplete: function(data) { //선택시 입력값 세팅
+                document.getElementById("address_kakao").value = data.address; // 주소 넣기
+                document.getElementById("address_detail").focus(); //상세입력 포커싱
+            }
+        }).open();
+    });
+}
+</script>
+
+</html>
